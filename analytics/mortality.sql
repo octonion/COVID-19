@@ -1,12 +1,38 @@
+begin;
+
+create temporary table data (
+       province_state		text,
+       country_region		text,
+       confirmed		integer,
+       recovered		integer,
+       deaths			integer
+);
+
+insert into data
+(province_state,country_region,confirmed,recovered,deaths)
+(
 select
+province_state,
 country_region,
 max(confirmed) as confirmed,
 max(recovered) as recovered,
-max(deaths) as deaths,
-(max(deaths)::float/max(confirmed)::float)::numeric(4,3) as lb,
-(max(deaths)::float/(max(2*recovered)::float+max(deaths)::float))::numeric(4,3) as mb,
-(max(deaths)::float/(max(recovered)::float+max(deaths)::float))::numeric(4,3) as ub
+max(deaths) as deaths
 from csse.dailies
+group by province_state,country_region
+);
+
+select
+country_region,
+sum(confirmed) as confirmed,
+sum(recovered) as recovered,
+sum(deaths) as deaths,
+(sum(deaths)::float/sum(confirmed)::float)::numeric(4,3) as lb,
+(sum(deaths)::float/(sum(2*recovered)::float+sum(deaths)::float))::numeric(4,3) as mb,
+(sum(deaths)::float/(sum(recovered)::float+sum(deaths)::float))::numeric(4,3) as ub
+from data
 group by country_region
-having max(deaths)+max(recovered)>0
-order by max(confirmed) desc;
+having sum(deaths)+sum(recovered)>0
+order by sum(confirmed) desc;
+
+commit;
+
