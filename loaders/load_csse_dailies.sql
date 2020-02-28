@@ -4,7 +4,7 @@ drop table if exists csse.dailies;
 
 create table csse.dailies (
 	province_state		text,
-	country_regiion		text,
+	country_region		text,
 	last_update		timestamp,
 	confirmed		integer,
 	deaths			integer,
