@@ -8,7 +8,9 @@ create table csse.dailies (
 	last_update		timestamp,
 	confirmed		integer,
 	deaths			integer,
-	recovered		integer
+	recovered		integer,
+	latitude		float,
+	longitutde		float
 );
 
 copy csse.dailies from '/tmp/dailies.csv' with delimiter as ',' csv quote as '"';
