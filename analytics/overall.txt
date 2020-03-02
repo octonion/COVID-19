@@ -1,0 +1,9 @@
+BEGIN
+CREATE TABLE
+INSERT 0 145
+ confirmed | recovered | deaths |  lb   |  mb   |  ub   
+-----------+-----------+--------+-------+-------+-------
+     88502 |     42716 |   2996 | 0.034 | 0.034 | 0.066
+(1 row)
+
+COMMIT
