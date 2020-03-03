@@ -1,16 +1,9 @@
 BEGIN
 CREATE TABLE
-<<<<<<< HEAD
 INSERT 0 163
  confirmed | recovered | deaths |  lb   |  mb   |  ub   
 -----------+-----------+--------+-------+-------+-------
      90452 |     45605 |   3086 | 0.034 | 0.038 | 0.063
-=======
-INSERT 0 145
- confirmed | recovered | deaths |  lb   |  mb   |  ub   
------------+-----------+--------+-------+-------+-------
-     88502 |     42716 |   2996 | 0.034 | 0.034 | 0.066
->>>>>>> 66619c7c086fbd07d930d9ac6e9f485aedfdb05f
 (1 row)
 
 COMMIT
