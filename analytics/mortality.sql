@@ -21,6 +21,8 @@ from csse.dailies
 group by province_state,country_region
 );
 
+copy
+(
 select
 country_region,
 sum(confirmed) as confirmed,
@@ -32,7 +34,9 @@ sum(deaths) as deaths,
 from data
 group by country_region
 having sum(deaths)+sum(recovered)>0
-order by sum(confirmed) desc;
+order by sum(confirmed) desc
+)
+to '/tmp/mortality.csv' csv header;
 
 commit;
 

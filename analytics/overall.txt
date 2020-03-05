@@ -1,9 +1,5 @@
 BEGIN
 CREATE TABLE
-INSERT 0 174
- confirmed | recovered | deaths |  lb   |  mb   |  ub   
------------+-----------+--------+-------+-------+-------
-     92989 |     48232 |   3161 | 0.034 | 0.039 | 0.062
-(1 row)
-
+INSERT 0 184
+COPY 1
 COMMIT
