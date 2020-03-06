@@ -1,2 +1,2 @@
-confirmed,recovered,deaths,lb,mb,ub
-98032,53800,3349,0.034,0.040,0.059
+confirmed,recovered,deaths,lb,mb0,mb1,mb2,ub
+98032,53800,3349,0.034,0.040,0.031,0.018,0.059
