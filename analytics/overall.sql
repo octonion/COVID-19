@@ -14,11 +14,12 @@ insert into data
 select
 province_state,
 country_region,
-max(confirmed) as confirmed,
-max(recovered) as recovered,
-max(deaths) as deaths
+confirmed as confirmed,
+recovered as recovered,
+deaths as deaths
 from csse.dailies
-group by province_state,country_region
+where last_update::date=CURRENT_DATE
+--group by province_state,country_region
 );
 
 copy
