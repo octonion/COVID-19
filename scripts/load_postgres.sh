@@ -24,6 +24,8 @@ done
 
 sed -e 's/$/,,/' -i /tmp/data/0[12]-*2020.csv
 
+perl -p -i -e 's/$/,$ARGV/;' /tmp/data/*.csv
+
 tail -q -n+2 /tmp/data/*.csv > /tmp/dailies.csv
 psql covid19 -f loaders/load_csse_dailies.sql
 rm /tmp/dailies.csv

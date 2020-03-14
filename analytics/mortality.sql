@@ -18,7 +18,7 @@ confirmed as confirmed,
 recovered as recovered,
 deaths as deaths
 from csse.dailies
-where last_update::date=CURRENT_DATE
+where file_date=(CURRENT_DATE-1)
 --group by province_state,country_region
 );
 
@@ -36,7 +36,7 @@ sum(deaths) as deaths,
 (sum(deaths)::float/sum(recovered+deaths)::float)::numeric(4,3) as ub
 from data
 group by country_region
-having sum(deaths)+sum(recovered)>0
+having sum(deaths+recovered)>0
 order by sum(confirmed) desc
 )
 to '/tmp/mortality.csv' csv header;
