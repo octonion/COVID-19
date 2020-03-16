@@ -18,7 +18,7 @@ confirmed as confirmed,
 recovered as recovered,
 deaths as deaths
 from csse.dailies
-where file_date=(CURRENT_DATE-1)
+where file_date=(CURRENT_DATE)
 --group by province_state,country_region
 );
 
