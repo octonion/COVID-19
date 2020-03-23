@@ -37,6 +37,7 @@ sum(deaths) as deaths,
 from data
 group by country_region
 having sum(deaths+recovered)>0
+  and sum(confirmed)>0
 order by sum(confirmed) desc
 )
 to '/tmp/mortality.csv' csv header;
