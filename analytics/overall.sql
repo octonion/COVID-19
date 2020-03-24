@@ -5,18 +5,20 @@ create temporary table data (
        country_region		text,
        confirmed		integer,
        recovered		integer,
-       deaths			integer
+       deaths			integer,
+       active			integer
 );
 
 insert into data
-(province_state,country_region,confirmed,recovered,deaths)
+(province_state,country_region,confirmed,recovered,deaths,active)
 (
 select
 province_state,
 country_region,
 confirmed as confirmed,
 recovered as recovered,
-deaths as deaths
+deaths as deaths,
+active as active
 from csse.dailies
 where file_date::date=(CURRENT_DATE)
 --group by province_state,country_region
@@ -28,6 +30,7 @@ select
 sum(confirmed) as confirmed,
 sum(recovered) as recovered,
 sum(deaths) as deaths,
+sum(active) as active,
 --(sum(deaths)::float/sum(least(2*recovered+deaths,confirmed))::float)::numeric(4,3) as mb0,
 (sum(deaths)::float/sum(confirmed)::float)::numeric(4,3) as lb,
 (sum(deaths)::float/sum(1.9*confirmed)::float)::numeric(4,3) as mb1,

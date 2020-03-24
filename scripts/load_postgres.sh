@@ -13,7 +13,7 @@ psql covid19 -f schema/create_schema.sql
 
 mkdir /tmp/data
 
-cp csse_covid_19_data/csse_covid_19_daily_reports/*.csv /tmp/data
+cp csse_covid_19_data/csse_covid_19_daily_reports/03-23-*.csv /tmp/data
 
 dos2unix /tmp/data/*
 
@@ -22,7 +22,9 @@ do
     sed -i -e '$a\' $file
 done
 
-sed -e 's/$/,,/' -i /tmp/data/0[12]-*2020.csv
+#sed -e 's/$/,,,,/' -i /tmp/data/0[12]-*2020.csv
+#sed -e 's/$/,,/' -i /tmp/data/0[3]-[01]*2020.csv
+#sed -e 's/$/,,/' -i /tmp/data/0[3]-2[012]*2020.csv
 
 perl -p -i -e 's/$/,$ARGV/;' /tmp/data/*.csv
 
