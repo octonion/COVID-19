@@ -20,7 +20,7 @@ recovered as recovered,
 deaths as deaths,
 active as active
 from csse.dailies
-where file_date=(CURRENT_DATE)
+where file_date=(select max(file_date) from csse.dailies)
 --group by province_state,country_region
 );
 

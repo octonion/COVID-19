@@ -13,7 +13,7 @@ psql covid19 -f schema/create_schema.sql
 
 mkdir /tmp/data
 
-cp csse_covid_19_data/csse_covid_19_daily_reports/03-23-*.csv /tmp/data
+cp csse_covid_19_data/csse_covid_19_daily_reports/03-2[34]-*.csv /tmp/data
 
 dos2unix /tmp/data/*
 
@@ -29,7 +29,7 @@ done
 perl -p -i -e 's/$/,$ARGV/;' /tmp/data/*.csv
 
 tail -q -n+2 /tmp/data/*.csv > /tmp/dailies.csv
-psql covid19 -f loaders/load_csse_dailies.sql
+psql covid19 -f loaders/load_csse_dailies_v2.sql
 rm /tmp/dailies.csv
 rm /tmp/data/*
 rmdir /tmp/data
