@@ -13,7 +13,7 @@ psql covid19 -f schema/create_schema.sql
 
 mkdir /tmp/data
 
-cp csse_covid_19_data/csse_covid_19_daily_reports/03-2[34]-*.csv /tmp/data
+cp csse_covid_19_data/csse_covid_19_daily_reports/03-2[3456789]-*.csv /tmp/data
 
 dos2unix /tmp/data/*
 
