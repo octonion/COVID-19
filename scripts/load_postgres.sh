@@ -30,8 +30,22 @@ done
 
 perl -p -i -e 's/$/,$ARGV/;' /tmp/data/*.csv
 
-tail -q -n+2 /tmp/data/*.csv > /tmp/dailies.csv
+# v3 data
+
+tail -q -n+2 /tmp/data/05-29-2020.csv > /tmp/dailies.csv
+tail -q -n+2 /tmp/data/05-3?-2020.csv >> /tmp/dailies.csv
+tail -q -n+2 /tmp/data/0[6789]-*.csv >> /tmp/dailies.csv
+psql covid19 -f loaders/load_csse_dailies_v3.sql
+
+rm /tmp/dailies.csv
+
+# v2 data
+
+tail -q -n+2 /tmp/data/0[34]-*.csv > /tmp/dailies.csv
+tail -q -n+2 /tmp/data/05-[01]*.csv >> /tmp/dailies.csv
+tail -q -n+2 /tmp/data/05-2[012345678]-*.csv >> /tmp/dailies.csv
 psql covid19 -f loaders/load_csse_dailies_v2.sql
+
 rm /tmp/dailies.csv
 rm /tmp/data/*
 rmdir /tmp/data
