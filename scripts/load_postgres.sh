@@ -37,8 +37,6 @@ tail -q -n+2 /tmp/data/05-3?-2020.csv >> /tmp/dailies.csv
 tail -q -n+2 /tmp/data/0[6789]-*.csv >> /tmp/dailies.csv
 psql covid19 -f loaders/load_csse_dailies_v3.sql
 
-rm /tmp/dailies.csv
-
 # v2 data
 
 tail -q -n+2 /tmp/data/0[34]-*.csv > /tmp/dailies.csv
@@ -49,3 +47,7 @@ psql covid19 -f loaders/load_csse_dailies_v2.sql
 rm /tmp/dailies.csv
 rm /tmp/data/*
 rmdir /tmp/data
+
+cp excess/ft_excess_deaths.csv /tmp/ft_excess_deaths.csv
+psql covid19 -f loaders/load_ft_excess_deaths.sql
+rm /tmp/ft_excess_deaths.csv
