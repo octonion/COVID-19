@@ -16,6 +16,7 @@ mkdir /tmp/data
 cp csse_covid_19_data/csse_covid_19_daily_reports/03-2[3456789]-*.csv /tmp/data
 cp csse_covid_19_data/csse_covid_19_daily_reports/03-3[01]-*.csv /tmp/data
 cp csse_covid_19_data/csse_covid_19_daily_reports/0[456789]-*.csv /tmp/data
+cp csse_covid_19_data/csse_covid_19_daily_reports/1?-*.csv /tmp/data
 
 dos2unix /tmp/data/*
 
@@ -35,7 +36,8 @@ perl -p -i -e 's/$/,$ARGV/;' /tmp/data/*.csv
 tail -q -n+2 /tmp/data/05-29-2020.csv > /tmp/dailies.csv
 tail -q -n+2 /tmp/data/05-3?-2020.csv >> /tmp/dailies.csv
 tail -q -n+2 /tmp/data/0[6789]-*.csv >> /tmp/dailies.csv
-psql covid19 -f loaders/load_csse_dailies_v3.sql
+tail -q -n+2 /tmp/data/1?-*.csv >> /tmp/dailies.csv
+psql covid19 -f loaders/load_csse_dailies_v4.sql
 
 # v2 data
 
